@@ -6,8 +6,10 @@ import { AppService } from './app.service';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get()
+  @Get('getProperties')
   getData() {
-    return this.appService.getData();
+    // const topic = '/sys/hympO86IcSD/hw507/thing/event/property/post';
+    // TODO 参数获取
+    return this.appService.getDeviceProperties('hympO86IcSD', 'hw507', ['temperature', 'Humidity']);
   }
 }
