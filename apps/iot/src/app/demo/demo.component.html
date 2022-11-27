@@ -12,25 +12,29 @@
     <div id="middle-content">
       <div id="learning-materials" class="rounded shadow">
         <h2>物联网设备</h2>
-        <a
-          rel="noreferrer"
-          class="list-item-link"
-        >
+        <a rel="noreferrer" class="list-item-link">
           <span>温湿度计</span>
         </a>
-      </div>
-      <div>
-        <a
-          class="button-pill rounded shadow"
-          rel="noreferrer"
-        >
-          <span>温度：{{ temp || '' }} 度</span>
+        <a rel="noreferrer" class="list-item-link">
+          <span>LED 灯</span>
         </a>
-        <a
-          class="button-pill rounded shadow"
-          rel="noreferrer"
-        >
-          <span>湿度：{{ hum || '' }} %</span>
+      </div>
+
+      <div>
+        <a class="button-pill rounded shadow" rel="noreferrer">
+          <span style="margin-right: 10px;">温度：{{ temp || '--' }} ℃</span>
+          <span>湿度：{{ hum || '--' }} %</span>
+        </a>
+        <a class="button-pill rounded shadow" rel="noreferrer" [style.backgroundColor]="color">
+          <span style="display: inline-block; height: 28px;"></span>
+        </a>
+      </div>
+
+      <div id="learning-materials" class="rounded shadow">
+        <h2>LED 灯控制</h2>
+        <a rel="noreferrer" class="list-item-link">
+          <span>颜色</span>
+          <input type="color" (change)="colorChange($event)">
         </a>
       </div>
     </div>

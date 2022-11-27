@@ -8,6 +8,7 @@ import { map } from 'rxjs/operators';
 export class IotClientService {
   constructor (private _http: HttpClient) {}
 
+  /**获取设备属性信息 */
   public getDeviceProperties() {
     const url = 'http://localhost:3333/api/getProperties';
     return this._http.get(url).pipe(
@@ -17,6 +18,10 @@ export class IotClientService {
     );
   }
 
+  /**
+   * 数据转换
+   * @returns-{ [key: string]: any }
+   */
   public transformData(res: any) {
     const propertyDataInfos: any[] = res.propertyDataInfos.propertyDataInfo;
     const data: any = {};
@@ -24,5 +29,11 @@ export class IotClientService {
       data[info.identifier] = info.list.propertyInfo[0].value;
     });
     return data;
+  }
+
+  /**向云平台发布消息 */
+  public pubMessage(body?: any) {
+    const url = 'http://localhost:3333/api/pubMessage';
+    return this._http.post(url, body);
   }
 }
