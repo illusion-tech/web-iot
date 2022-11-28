@@ -25,7 +25,7 @@
           <span style="margin-right: 10px;">温度：{{ temp || '--' }} ℃</span>
           <span>湿度：{{ hum || '--' }} %</span>
         </a>
-        <a class="button-pill rounded shadow" rel="noreferrer" [style.backgroundColor]="color">
+        <a class="button-pill rounded shadow" rel="noreferrer" [style.backgroundColor]="hex">
           <span style="display: inline-block; height: 28px;"></span>
         </a>
       </div>
@@ -35,6 +35,12 @@
         <a rel="noreferrer" class="list-item-link">
           <span>颜色</span>
           <input type="color" (change)="colorChange($event)">
+        </a>
+        <a rel="noreferrer" class="list-item-link" [class.active]="ledStatus" (click)="switchLED(1)">
+          <span>点亮</span>
+        </a>
+        <a rel="noreferrer" class="list-item-link" [class.active]="!ledStatus" (click)="switchLED(0)">
+          <span>关闭</span>
         </a>
       </div>
     </div>
