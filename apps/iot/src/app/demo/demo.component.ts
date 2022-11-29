@@ -12,6 +12,7 @@ export class DemoComponent implements OnInit, OnDestroy {
   public temp = 0;
   public hum = 0;
   public hex = '#ffffff';
+  public brightness = 100;
   public ledStatus = 0;
   public timer: any;
 
@@ -20,15 +21,25 @@ export class DemoComponent implements OnInit, OnDestroy {
     private _utilService: UtilService,
   ) {}
 
-  public colorChange($event: any) {
-    this.hex = $event.target.value;
-    this.switchLED(this.ledStatus);
+  public brightnessChange($event: any) {
+    this.brightness = $event.target.value;
+    this.driveLED();
   }
 
-  public async switchLED(status: number) {
+  public colorChange($event: any) {
+    this.hex = $event.target.value;
+    this.driveLED();
+  }
+
+  public switchChange(status: number) {
     this.ledStatus = status;
+    this.driveLED();
+  }
+
+  public async driveLED() {
     await firstValueFrom(this._iotClientService.pubMessage({
-      status,
+      status: this.ledStatus,
+      brightness: Number(this.brightness),
       rgb: this._utilService.hex2Rgb(this.hex),
     }));
   }

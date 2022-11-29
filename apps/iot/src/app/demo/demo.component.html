@@ -36,10 +36,14 @@
           <span>颜色</span>
           <input type="color" (change)="colorChange($event)">
         </a>
-        <a rel="noreferrer" class="list-item-link" [class.active]="ledStatus" (click)="switchLED(1)">
+        <a rel="noreferrer" class="list-item-link">
+          <span>亮度</span>
+          <input type="number" max="100" min="0" [value]="brightness" (blur)="brightnessChange($event)">
+        </a>
+        <a rel="noreferrer" class="list-item-link" [class.active]="ledStatus" (click)="switchChange(1)">
           <span>点亮</span>
         </a>
-        <a rel="noreferrer" class="list-item-link" [class.active]="!ledStatus" (click)="switchLED(0)">
+        <a rel="noreferrer" class="list-item-link" [class.active]="!ledStatus" (click)="switchChange(0)">
           <span>关闭</span>
         </a>
       </div>
